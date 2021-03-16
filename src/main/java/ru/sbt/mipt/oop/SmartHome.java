@@ -1,5 +1,7 @@
 package ru.sbt.mipt.oop;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,10 +14,6 @@ public class SmartHome {
 
     public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public void addRoom(Room room) {
-        rooms.add(room);
     }
 
     public Collection<Room> getRooms() {

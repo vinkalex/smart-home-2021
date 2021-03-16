@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class EventCreatorImpl implements EventCreator{
+public class RandomSensorEventQueue implements SensorEventQueue {
     //главная реализация генератора событий
     @Override
     public SensorEvent getNextSensorEvent() {
