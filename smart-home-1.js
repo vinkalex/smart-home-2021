@@ -1,5 +1,5 @@
 {
-  "rooms": [
+  "rooms":[
     {
       "lights": [
         {
