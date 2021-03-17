@@ -9,32 +9,33 @@ public class HallDoorEventHandler implements SensorEventHandler {
     }
 
     public void changeDoorAndLightState(SmartHome smartHome, SensorEvent event) {
-        Door door = HomeUtils.findDoor(smartHome, event.getObjectId());
-        if (door != null) {
-            closeTheDoor(door);
-            turnOffAllLights(smartHome);
-        }
-    }
+        Action turnOff = (obj)->{
+            if(obj instanceof Light)
+                updateLightState(event, (Light) obj);
+        };
 
-    private void closeTheDoor(Door door) {
-        door.setOpen(false);
-        System.out.println("Door " + door.getId() + " was " +  " closed.");
-    }
-
-    private void turnOffAllLights(SmartHome smartHome) {
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                light.setOn(false);
-                SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-                CommandSender sender = new CommandSender();
-                sender.sendCommand(command);
+        Action findDoorAndTurnOffAllLights = (obj)->{
+            if(obj instanceof Room && ((Room) obj).getName().equals("hall")) {
+                Door door = ((Room) obj).getDoor(event.getObjectId());
+                if (door != null) {
+                    smartHome.handle(turnOff);
+                }
             }
-        }
+
+        };
+
+        smartHome.handle(findDoorAndTurnOffAllLights);
+    }
+
+    private void updateLightState(SensorEvent event, Light light) {
+        boolean newState = event.getType().equals(SensorEventType.LIGHT_ON);
+        light.setOn(newState);
+        SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
+        CommandSender sender = new CommandSender();
+        sender.sendCommand(command);
     }
 
     private boolean isHallDoorEvent(SmartHome smartHome, SensorEvent event) {
-        return (event.getType().equals(SensorEventType.DOOR_CLOSED))
-                && (HomeUtils.isHallDoor(smartHome, event.getObjectId()));
+        return (event.getType().equals(SensorEventType.DOOR_CLOSED));
     }
-
 }

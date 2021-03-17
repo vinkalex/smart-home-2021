@@ -1,11 +1,9 @@
 package ru.sbt.mipt.oop;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
+public class SmartHome implements Actionable{
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -19,4 +17,12 @@ public class SmartHome {
     public Collection<Room> getRooms() {
         return rooms;
     }
+
+    public void handle(Action action) {
+        action.doAction(this);
+
+        for(Room room : rooms)
+            room.handle(action);
+    }
+
 }

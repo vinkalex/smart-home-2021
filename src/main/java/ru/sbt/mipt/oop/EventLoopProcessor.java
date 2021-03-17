@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop;
 
-import java.beans.EventHandler;
 import java.util.Collection;
 
 public class EventLoopProcessor {

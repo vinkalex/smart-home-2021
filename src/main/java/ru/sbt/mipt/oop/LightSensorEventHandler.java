@@ -9,11 +9,14 @@ public class LightSensorEventHandler implements SensorEventHandler {
     }
 
     private void changeLightState(SmartHome smartHome, SensorEvent event) {
-        Light light = HomeUtils.findLight(smartHome, event.getObjectId());
-        if (light != null) {
-            updateLightState(event, light);
-        }
+        Action lightAction = (obj) -> {
+            if (obj instanceof Light && ((Light) obj).getId().equals(event.getObjectId()))
+                updateLightState(event, (Light) obj);
+        };
+
+        smartHome.handle(lightAction);
     }
+
 
     private void updateLightState(SensorEvent event, Light light) {
         boolean newState = event.getType().equals(SensorEventType.LIGHT_ON);
@@ -22,6 +25,6 @@ public class LightSensorEventHandler implements SensorEventHandler {
     }
 
     private boolean isLightEvent(SensorEvent event) {
-        return(event.getType().equals(SensorEventType.LIGHT_ON) || (event.getType().equals(SensorEventType.LIGHT_OFF)));
+        return (event.getType().equals(SensorEventType.LIGHT_ON) || (event.getType().equals(SensorEventType.LIGHT_OFF)));
     }
 }
