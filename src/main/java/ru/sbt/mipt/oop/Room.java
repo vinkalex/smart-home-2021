@@ -13,26 +13,31 @@ public class Room implements Actionable{
         this.name = name;
     }
 
-    public Collection<Light> getLights() {
-        return lights;
+    public boolean isDoorOpen(String doorId) {
+        for (Door door: doors) {
+            if (door.getId().equals(doorId)) {
+                return door.isOpen();
+            }
+        }
+        return true;
     }
 
-    public Collection<Door> getDoors() {
-        return doors;
+    public boolean isLightOn(String lightId) {
+        for (Light light: lights) {
+            if (light.getId().equals(lightId)) {
+                return light.isOn();
+            }
+        }
+        return true;
     }
 
-    public Door getDoor(String doorId) {
-        for(Door door : doors)
-            if(door.getId().equals(doorId))
-                return door;
-        return null;
-    }
-
-    public Light getLight(String lightId) {
-        for(Light light : lights)
-            if(light.getId().equals(lightId))
-                return light;
-        return null;
+    public boolean allLightsOff() {
+        for (Light light: lights) {
+            if (light.isOn()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String getName() {

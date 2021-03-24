@@ -17,7 +17,7 @@ class LightSensorEventHandlerTest {
         SensorEventHandler handler = new LightSensorEventHandler();
         handler.handleEvent(smartHome, event);
 
-        assertTrue(kitchen.getLight("1").isOn());
+        assertTrue(kitchen.isLightOn("1"));
     }
 
     @Test
@@ -30,6 +30,6 @@ class LightSensorEventHandlerTest {
         SensorEventHandler handler = new LightSensorEventHandler();
         handler.handleEvent(smartHome, event);
 
-        assertTrue(kitchen.getLight("1").isOn());
+        assertTrue(kitchen.isLightOn("1"));
     }
 }

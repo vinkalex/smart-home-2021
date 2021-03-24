@@ -9,19 +9,15 @@ public class HallDoorEventHandler implements SensorEventHandler {
     }
 
     public void changeDoorAndLightState(SmartHome smartHome, SensorEvent event) {
-        Action turnOff = (obj)->{
-            if(obj instanceof Light)
+        Action turnOff = (obj) -> {
+            if (obj instanceof Light)
                 updateLightState(event, (Light) obj);
         };
 
-        Action findDoorAndTurnOffAllLights = (obj)->{
-            if(obj instanceof Room && ((Room) obj).getName().equals("hall")) {
-                Door door = ((Room) obj).getDoor(event.getObjectId());
-                if (door != null) {
-                    smartHome.handle(turnOff);
-                }
+        Action findDoorAndTurnOffAllLights = (obj) -> {
+            if (obj instanceof Room && ((Room) obj).getName().equals("hall")) {
+                smartHome.handle(turnOff);
             }
-
         };
 
         smartHome.handle(findDoorAndTurnOffAllLights);

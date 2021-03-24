@@ -20,11 +20,9 @@ class HallDoorEventHandlerTest {
         SensorEventHandler handler = new HallDoorEventHandler();
         handler.handleEvent(smartHome, event);
 
-        for (Light light : hall.getLights()) {
-            assertFalse(light.isOn());
-        }
+        assertTrue(smartHome.isAllLightsOff());
 
-        assertFalse(hall.getDoor("1").isOpen());
+        assertFalse(hall.isDoorOpen("1"));
     }
 
     @Test
@@ -41,6 +39,6 @@ class HallDoorEventHandlerTest {
         SensorEventHandler handler = new HallDoorEventHandler();
         handler.handleEvent(smartHome, event);
 
-        assertTrue(bedroom.getDoor("3").isOpen());
+        assertTrue(bedroom.isDoorOpen("3"));
     }
 }

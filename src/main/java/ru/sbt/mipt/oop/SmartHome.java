@@ -14,8 +14,13 @@ public class SmartHome implements Actionable{
         this.rooms = rooms;
     }
 
-    public Collection<Room> getRooms() {
-        return rooms;
+    public boolean isAllLightsOff() {
+        for (Room room: rooms) {
+            if (!room.allLightsOff()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void handle(Action action) {

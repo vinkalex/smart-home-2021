@@ -16,7 +16,7 @@ class DoorSensorEventHandlerTest {
         SensorEventHandler handler = new DoorSensorEventHandler();
         handler.handleEvent(smartHome, event);
 
-        assertTrue(kitchen.getDoor("1").isOpen());
+        assertTrue(kitchen.isDoorOpen("1"));
     }
 
     @Test
@@ -29,6 +29,7 @@ class DoorSensorEventHandlerTest {
         SensorEventHandler handler = new DoorSensorEventHandler();
         handler.handleEvent(smartHome, event);
 
-        assertTrue(kitchen.getDoor("1").isOpen());
+        assertTrue(kitchen.isDoorOpen("1"));
     }
+
 }
