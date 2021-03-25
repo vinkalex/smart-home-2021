@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements Actionable{
+    private Signalization signalization;
+
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -21,6 +23,10 @@ public class SmartHome implements Actionable{
             }
         }
         return true;
+    }
+
+    public Signalization getSignalization() {
+        return this.signalization;
     }
 
     public void handle(Action action) {

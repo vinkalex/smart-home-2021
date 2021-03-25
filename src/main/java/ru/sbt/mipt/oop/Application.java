@@ -13,7 +13,7 @@ public class Application {
 
         //создаем список обработчиков
         Collection<SensorEventHandler> eventHandlers = Arrays.asList(new DoorSensorEventHandler(),
-                new LightSensorEventHandler(), new HallDoorEventHandler());
+                new LightSensorEventHandler(), new HallDoorEventHandler(), new SignalizationHandler());
 
         // запускаем цикл обработки событий
         EventLoopProcessor eventLoop = new EventLoopProcessor(smartHome, eventHandlers);
