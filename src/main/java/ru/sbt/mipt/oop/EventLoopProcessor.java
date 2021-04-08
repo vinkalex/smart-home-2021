@@ -23,6 +23,10 @@ public class EventLoopProcessor {
         }
     }
 
+    public void processEvent(SensorEvent event) {
+        this.handleSensorEvent(event);
+    }
+
     private void handleSensorEvent(SensorEvent event) {
         for (SensorEventHandler eventHandler: eventHandlers) {
             eventHandler.handleEvent(this.smartHome, event);
