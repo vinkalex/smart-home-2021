@@ -1,11 +1,11 @@
 package ru.sbt.mipt.oop;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
+public class SmartHome implements Actionable{
+    private Signalization signalization;
+
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -16,7 +16,24 @@ public class SmartHome {
         this.rooms = rooms;
     }
 
-    public Collection<Room> getRooms() {
-        return rooms;
+    public boolean isAllLightsOff() {
+        for (Room room: rooms) {
+            if (!room.allLightsOff()) {
+                return false;
+            }
+        }
+        return true;
     }
+
+    public Signalization getSignalization() {
+        return this.signalization;
+    }
+
+    public void handle(Action action) {
+        action.doAction(this);
+
+        for(Room room : rooms)
+            room.handle(action);
+    }
+
 }

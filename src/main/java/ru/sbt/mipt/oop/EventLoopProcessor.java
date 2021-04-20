@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop;
 
-import java.beans.EventHandler;
 import java.util.Collection;
 
 public class EventLoopProcessor {
@@ -22,6 +21,10 @@ public class EventLoopProcessor {
             this.handleSensorEvent(event);
             event = this.eventQueue.getNextSensorEvent();
         }
+    }
+
+    public void processEvent(SensorEvent event) {
+        this.handleSensorEvent(event);
     }
 
     private void handleSensorEvent(SensorEvent event) {

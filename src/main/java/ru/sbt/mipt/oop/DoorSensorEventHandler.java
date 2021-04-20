@@ -9,10 +9,11 @@ public class DoorSensorEventHandler implements SensorEventHandler {
     }
 
     private void changeDoorState(SmartHome smartHome, SensorEvent event) {
-        Door door = HomeUtils.findDoor(smartHome, event.getObjectId());
-        if (door != null) {
-            updateDoorState(event, door);
-        }
+        Action doorAction = (obj)->{
+            if(obj instanceof Door && ((Door) obj).getId().equals(event.getObjectId()))
+                updateDoorState(event, (Door) obj);
+        };
+        smartHome.handle(doorAction);
     }
 
     private void updateDoorState(SensorEvent event, Door door) {

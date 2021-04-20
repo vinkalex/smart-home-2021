@@ -1,8 +1,5 @@
 package ru.sbt.mipt.oop;
 
-import java.beans.EventHandler;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -16,7 +13,7 @@ public class Application {
 
         //создаем список обработчиков
         Collection<SensorEventHandler> eventHandlers = Arrays.asList(new DoorSensorEventHandler(),
-                new LightSensorEventHandler(), new HallDoorEventHandler());
+                new LightSensorEventHandler(), new HallDoorEventHandler(), new SignalizationHandler());
 
         // запускаем цикл обработки событий
         EventLoopProcessor eventLoop = new EventLoopProcessor(smartHome, eventHandlers);
