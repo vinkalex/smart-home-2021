@@ -18,4 +18,9 @@ public class SignalizationActivated implements State{
             this.signalization.changeState(new SignalizationAlarmed(this.signalization));
         } else this.signalization.changeState(new SignalizationDeactivated(this.signalization));
     }
+
+    @Override
+    public void alarm() {
+        this.signalization.changeState(new SignalizationAlarmed(this.signalization));
+    }
 }

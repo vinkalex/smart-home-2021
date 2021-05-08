@@ -4,15 +4,14 @@ import event.handlers.EventHandler;
 import message.sender.SmsSender;
 import sensor.events.Event;
 import signalization.Signalization;
-import signalization.SignalizationAlarmed;
 import smarthome.SmartHome;
 
-public class EventDecorator implements EventHandler {
+public class SignalizationEventHandlerDecorator implements EventHandler {
     private final Signalization signalization;
     private final EventHandler eventHandler;
     private final SmsSender smsSender;
 
-    public EventDecorator(Signalization signalization, EventHandler eventHandler, SmsSender smsSender) {
+    public SignalizationEventHandlerDecorator(Signalization signalization, EventHandler eventHandler, SmsSender smsSender) {
         this.signalization = signalization;
         this.eventHandler = eventHandler;
         this.smsSender = smsSender;
@@ -21,7 +20,7 @@ public class EventDecorator implements EventHandler {
     @Override
     public void handleEvent(SmartHome smartHome, Event event) {
         if (this.signalization.isActivated()) {
-            this.signalization.changeState(new SignalizationAlarmed(this.signalization));
+            this.signalization.alarm();
         } else
         if (this.signalization.isAlarmed()) {
             this.smsSender.send("Sending sms!");

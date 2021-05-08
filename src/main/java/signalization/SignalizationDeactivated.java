@@ -14,4 +14,7 @@ public class SignalizationDeactivated implements State{
 
     @Override
     public void deactivate(String code) {}
+
+    @Override
+    public void alarm() {this.signalization.changeState(new SignalizationAlarmed(this.signalization));}
 }

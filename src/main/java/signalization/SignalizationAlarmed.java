@@ -18,4 +18,9 @@ public class SignalizationAlarmed implements State {
     public void deactivate(String code) {
         System.out.println(this.message);
     }
+
+    @Override
+    public void alarm() {
+        System.out.println(this.message);
+    }
 }

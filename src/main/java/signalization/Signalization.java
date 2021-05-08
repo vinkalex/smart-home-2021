@@ -19,6 +19,8 @@ public class Signalization {
         this.state.deactivate(code);
     }
 
+    public void alarm() {this.state.alarm();}
+
     public boolean isActivated() {
         return this.state instanceof SignalizationActivated;
     }
