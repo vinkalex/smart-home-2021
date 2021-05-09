@@ -18,14 +18,14 @@ public class SignalizationEventHandlerDecorator implements EventHandler {
     }
 
     @Override
-    public void handleEvent(SmartHome smartHome, Event event) {
+    public void handleEvent(Event event) {
         if (this.signalization.isActivated()) {
             this.signalization.alarm();
         } else
         if (this.signalization.isAlarmed()) {
             this.smsSender.send("Sending sms!");
         } else {
-            this.eventHandler.handleEvent(smartHome, event);
+            this.eventHandler.handleEvent(event);
         }
     }
 }
