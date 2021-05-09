@@ -12,5 +12,6 @@ public class Application {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class);
         SensorEventsManager sensorEventsManager = context.getBean(SensorEventsManager.class);
         sensorEventsManager.start();
+
     }
 }
