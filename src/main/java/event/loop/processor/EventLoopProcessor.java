@@ -1,5 +1,6 @@
 package event.loop.processor;
 
+import decorator.EventHandlerDecorator;
 import decorator.SignalizationEventHandlerDecorator;
 import event.handlers.EventHandler;
 import message.sender.SmsSender;
@@ -31,8 +32,8 @@ public class EventLoopProcessor {
 
     private void handleAnyEvent(Event event) {
         for (EventHandler eventHandler: eventHandlers) {
-            SignalizationEventHandlerDecorator decorator = new SignalizationEventHandlerDecorator(this.smartHome.getSignalization(), eventHandler, new SmsSender());
-            decorator.handleEvent(this.smartHome, event);
+            EventHandlerDecorator decorator = new SignalizationEventHandlerDecorator(this.smartHome.getSignalization(), eventHandler, new SmsSender());
+            decorator.handleEvent(event);
         }
     }
 

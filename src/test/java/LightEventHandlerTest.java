@@ -21,8 +21,8 @@ public class LightEventHandlerTest {
                 "kitchen");
         SmartHome smartHome = new SmartHome(Arrays.asList(kitchen));
         SensorEvent event = new SensorEvent(EventType.LIGHT_ON, "1");
-        EventHandler handler = new LightSensorEventHandler();
-        handler.handleEvent(smartHome, event);
+        EventHandler handler = new LightSensorEventHandler(smartHome);
+        handler.handleEvent(event);
 
         assert(light1.isOn());
     }
@@ -37,8 +37,8 @@ public class LightEventHandlerTest {
                 "kitchen");
         SmartHome smartHome = new SmartHome(Arrays.asList(kitchen));
         SensorEvent event = new SensorEvent(EventType.LIGHT_ON, "1");
-        EventHandler handler = new LightSensorEventHandler();
-        handler.handleEvent(smartHome, event);
+        EventHandler handler = new LightSensorEventHandler(smartHome);
+        handler.handleEvent(event);
 
         assert(light1.isOn());
     }

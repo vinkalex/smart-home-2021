@@ -4,9 +4,8 @@ import event.handlers.EventHandler;
 import message.sender.SmsSender;
 import sensor.events.Event;
 import signalization.Signalization;
-import smarthome.SmartHome;
 
-public class SignalizationEventHandlerDecorator implements EventHandler {
+public class SignalizationEventHandlerDecorator implements EventHandlerDecorator {
     private final Signalization signalization;
     private final EventHandler eventHandler;
     private final SmsSender smsSender;

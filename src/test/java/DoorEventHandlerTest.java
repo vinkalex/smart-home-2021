@@ -21,8 +21,8 @@ public class DoorEventHandlerTest {
                 "kitchen");
         SmartHome smartHome = new SmartHome(Arrays.asList(kitchen));
         SensorEvent event = new SensorEvent(EventType.DOOR_OPEN, "1");
-        EventHandler handler = new DoorSensorEventHandler();
-        handler.handleEvent(smartHome, event);
+        EventHandler handler = new DoorSensorEventHandler(smartHome);
+        handler.handleEvent(event);
 
         assert(door1.isOpen());
     }
@@ -37,8 +37,8 @@ public class DoorEventHandlerTest {
                 "kitchen");
         SmartHome smartHome = new SmartHome(Arrays.asList(kitchen));
         SensorEvent event = new SensorEvent(EventType.DOOR_OPEN, "1");
-        EventHandler handler = new DoorSensorEventHandler();
-        handler.handleEvent(smartHome, event);
+        EventHandler handler = new DoorSensorEventHandler(smartHome);
+        handler.handleEvent(event);
 
         assert(door1.isOpen());
     }

@@ -9,7 +9,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 public class Application {
 
     public static void main(String... args) {
-        AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class);
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         SensorEventsManager sensorEventsManager = context.getBean(SensorEventsManager.class);
         sensorEventsManager.start();
 
