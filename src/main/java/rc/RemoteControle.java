@@ -6,5 +6,7 @@ public interface RemoteControle {
      * @param buttonCode button letter: “A”, “B”, “C”, “D”, “1”, “2”, “3”, “4”
      * @param rcId remote control id
      */
-    void onButtonPressed(String buttonCode);
+    public void onButtonPressed(String buttonCode, String rcId);
+
+    public void setRcId(String rcId);
 }
