@@ -28,8 +28,8 @@ public class HallDoorEventHandlerTest {
                 "bedroom");
         SmartHome smartHome = new SmartHome(Arrays.asList(hall, bedroom));
         SensorEvent event = new SensorEvent(EventType.DOOR_CLOSED, "1");
-        EventHandler handler = new HallDoorEventHandler();
-        handler.handleEvent(smartHome, event);
+        EventHandler handler = new HallDoorEventHandler(smartHome);
+        handler.handleEvent(event);
 
         assert(!light1.isOn());
         assert(!light2.isOn());
@@ -57,8 +57,8 @@ public class HallDoorEventHandlerTest {
         SmartHome smartHome = new SmartHome(Arrays.asList(hall, bedroom));
         SensorEvent event = new SensorEvent(EventType.DOOR_CLOSED, "2");
 
-        EventHandler handler = new HallDoorEventHandler();
-        handler.handleEvent(smartHome, event);
+        EventHandler handler = new HallDoorEventHandler(smartHome);
+        handler.handleEvent(event);
 
         assert(door2.isOpen());
     }

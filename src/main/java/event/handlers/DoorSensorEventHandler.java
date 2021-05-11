@@ -8,14 +8,20 @@ import smarthome.Door;
 import smarthome.SmartHome;
 
 public class DoorSensorEventHandler implements EventHandler {
+    private final SmartHome smartHome;
+
+    public DoorSensorEventHandler(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
+
     @Override
-    public void handleEvent(SmartHome smartHome, Event event) {
+    public void handleEvent(Event event) {
         if (isDoorEvent(event)) {
-            changeDoorState(smartHome, event);
+            changeDoorState(event);
         }
     }
 
-    private void changeDoorState(SmartHome smartHome, Event event) {
+    private void changeDoorState(Event event) {
         Action doorAction = (obj)->{
             if(obj instanceof Door && ((Door) obj).getId().equals(((SensorEvent)event).getObjectId()))
                 updateDoorState(event, (Door) obj);

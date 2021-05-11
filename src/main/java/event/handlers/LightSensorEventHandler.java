@@ -8,14 +8,20 @@ import smarthome.Light;
 import smarthome.SmartHome;
 
 public class LightSensorEventHandler implements EventHandler {
+    private final SmartHome smartHome;
+
+    public LightSensorEventHandler(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
+
     @Override
-    public void handleEvent(SmartHome smartHome, Event event) {
+    public void handleEvent(Event event) {
         if (isLightEvent(event)) {
-            changeLightState(smartHome, event);
+            changeLightState(event);
         }
     }
 
-    private void changeLightState(SmartHome smartHome, Event event) {
+    private void changeLightState(Event event) {
         Action lightAction = (obj) -> {
             if (obj instanceof Light && ((Light) obj).getId().equals(((SensorEvent)event).getObjectId()))
                 updateLightState(event, (Light) obj);

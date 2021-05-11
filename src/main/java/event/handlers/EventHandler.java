@@ -5,5 +5,5 @@ import smarthome.SmartHome;
 
 public interface EventHandler {
     //обработка сценариев событий
-    void handleEvent(SmartHome smartHome, Event event);
+    void handleEvent(Event event);
 }

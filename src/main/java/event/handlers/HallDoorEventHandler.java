@@ -12,9 +12,11 @@ import smarthome.Room;
 import smarthome.SmartHome;
 
 public class HallDoorEventHandler implements EventHandler {
+    private final SmartHome smartHome;
     private boolean isHallDoor;
 
-    public HallDoorEventHandler() {
+    public HallDoorEventHandler(SmartHome smartHome) {
+        this.smartHome = smartHome;
         this.isHallDoor = false;
     }
 
@@ -23,13 +25,13 @@ public class HallDoorEventHandler implements EventHandler {
     }
 
     @Override
-    public void handleEvent(SmartHome smartHome, Event event) {
-        if (isHallDoorEvent(smartHome, event)) {
-            changeDoorAndLightState(smartHome, event);
+    public void handleEvent(Event event) {
+        if (isHallDoorEvent(event)) {
+            changeDoorAndLightState(event);
         }
     }
 
-    public void changeDoorAndLightState(SmartHome smartHome, Event event) {
+    public void changeDoorAndLightState(Event event) {
         Action turnOff = (obj) -> {
             if (obj instanceof Light)
                 updateLightState(event, (Light) obj);
@@ -46,7 +48,7 @@ public class HallDoorEventHandler implements EventHandler {
         sender.sendCommand(command);
     }
 
-    private boolean isHallDoorEvent(SmartHome smartHome, Event event) {
+    private boolean isHallDoorEvent(Event event) {
         Action isHallDoorAction = (obj) -> {
             if (obj instanceof Room && ((Room) obj).getName().equals("hall") &&
                     (((Room)obj).doorExists(((SensorEvent)event).getObjectId()))) {

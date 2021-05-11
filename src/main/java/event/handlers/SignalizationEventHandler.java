@@ -7,8 +7,14 @@ import signalization.Signalization;
 import smarthome.SmartHome;
 
 public class SignalizationEventHandler implements EventHandler {
+    private final SmartHome smartHome;
+
+    public SignalizationEventHandler(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
+
     @Override
-    public void handleEvent(SmartHome smartHome, Event event) {
+    public void handleEvent(Event event) {
         if (isSignalizationEvent(event)) {
             changeSignalizationState(smartHome.getSignalization(), event);
         }
